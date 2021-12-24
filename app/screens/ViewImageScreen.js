@@ -1,6 +1,8 @@
 import React from "react";
 import { StyleSheet, SafeAreaView, View, Image } from "react-native";
 
+import colors from "../config/colors";
+
 function ViewImageScreen(props) {
   return (
     <SafeAreaView style={styles.containter}>
@@ -19,19 +21,19 @@ const styles = StyleSheet.create({
   closeIcon: {
     width: 35,
     height: 35,
-    backgroundColor: "#fc5c65",
+    backgroundColor: colors.primary,
     position: "absolute",
     top: 40,
     left: 30,
   },
   containter: {
-    backgroundColor: "#000000",
+    backgroundColor: colors.black,
     flex: 1,
   },
   deleteIcon: {
     width: 35,
     height: 35,
-    backgroundColor: "#4ecdc4",
+    backgroundColor: colors.secondary,
     position: "absolute",
     top: 40,
     right: 30,
