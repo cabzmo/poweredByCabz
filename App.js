@@ -1,34 +1,33 @@
 import { StatusBar } from "expo-status-bar";
 import {
+  Dimensions,
   StyleSheet,
   Text,
-  View,
+  Platform,
   Image,
   SafeAreaView,
+  View,
   TouchableHighlight,
+  Button,
 } from "react-native";
+import {
+  useDeviceOrientation,
+  useDimensions,
+} from "@react-native-community/hooks";
 
 export default function App() {
+  const { landscape } = useDeviceOrientation();
+
   return (
     <SafeAreaView style={styles.container}>
-      <Text onPress={() => console.log("text clicked")}>
-        Hello React Native
-      </Text>
-      <TouchableHighlight onPress={() => console.log("remote image clicked")}>
-        <Image
-          blurRadius={3}
-          fadeDuration={1000}
-          source={{
-            width: 200,
-            height: 200,
-            uri: "https://picsum.photos/200/300",
-          }}
-        />
-      </TouchableHighlight>
-      <TouchableHighlight onPress={() => console.log("local image clicked")}>
-        <Image source={require("./assets/favicon.png")} />
-      </TouchableHighlight>
       <StatusBar style="auto" />
+      <View
+        style={{
+          backgroundColor: "dodgerblue",
+          width: "100%",
+          height: landscape ? "100%" : "30%",
+        }}
+      />
     </SafeAreaView>
   );
 }
@@ -37,7 +36,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    justifyContent: "center",
-    alignItems: "center",
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
 });
