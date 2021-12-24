@@ -3,11 +3,11 @@ import { StyleSheet, SafeAreaView, View, Image } from "react-native";
 
 import colors from "../config/colors";
 
-function ViewImageScreen(props) {
+function ViewImageScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.containter}>
-      <View style={styles.closeIcon}></View>
-      <View style={styles.deleteIcon}></View>
+      {/* <View style={styles.closeIcon}></View>
+      <View style={styles.deleteIcon}></View> */}
       <Image
         resizeMode="contain"
         style={styles.image}
