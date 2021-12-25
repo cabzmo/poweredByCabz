@@ -21,7 +21,11 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen component={WelcomeScreen} name="Home" />
+        <Stack.Screen
+          component={WelcomeScreen}
+          name="Home"
+          options={{ title: " " }}
+        />
         <Stack.Screen component={ViewImageScreen} name="Chair" />
       </Stack.Navigator>
     </NavigationContainer>
