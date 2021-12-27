@@ -8,6 +8,9 @@ import {
   Image,
   TextInput,
   TouchableHighlight,
+  TouchableWithoutFeedback,
+  Keyboard,
+  KeyboardAvoidingView,
 } from "react-native";
 
 function SignUpScreen(props) {
@@ -36,71 +39,80 @@ function SignUpScreen(props) {
   };
 
   return (
-    <ImageBackground
-      style={styles.background}
-      source={require("../assets/background.jpg")}
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={{ flex: 1 }}
     >
-      <StatusBar style={"auto"} />
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <ImageBackground
+          style={styles.background}
+          source={require("../assets/background.jpg")}
+        >
+          <StatusBar style={"auto"} />
+          {/* Logo and text */}
+          <View style={styles.logoContainer}>
+            <Image
+              style={styles.logo}
+              source={require("../assets/logo-red.png")}
+            />
+            <Text style={styles.logoText}>Sell What You Don't Need</Text>
+          </View>
 
-      {/* Logo and text */}
-      <View style={styles.logoContainer}>
-        <Image style={styles.logo} source={require("../assets/logo-red.png")} />
-        <Text style={styles.logoText}>Sell What You Don't Need</Text>
-      </View>
+          {/* Form */}
+          <View style={styles.placeholder}>
+            {/* Left side */}
+            <View style={styles.containers}>
+              <View style={styles.boxes}>
+                <View style={styles.labelHolder}>
+                  <Text style={styles.labelsText}>Username:</Text>
+                </View>
+              </View>
+              <View style={styles.boxes}>
+                <View style={styles.labelHolder}>
+                  <Text style={styles.labelsText}>Password:</Text>
+                </View>
+              </View>
+              <View style={styles.boxes}>
+                <View style={styles.labelHolder}>
+                  <Text style={styles.labelsText}>Confirm Password:</Text>
+                </View>
+              </View>
+            </View>
 
-      {/* Form */}
-      <View style={styles.placeholder}>
-        {/* Left side */}
-        <View style={styles.containers}>
-          <View style={styles.boxes}>
-            <View style={styles.labelHolder}>
-              <Text style={styles.labelsText}>Username:</Text>
+            {/* Right side */}
+            <View style={[styles.containers, { backgroundColor: "black" }]}>
+              <View style={styles.boxes}>
+                <TouchableHighlight style={styles.touchable}>
+                  <TextInput
+                    style={styles.textInput}
+                    value={form.username}
+                    onChangeText={updateUsername}
+                  ></TextInput>
+                </TouchableHighlight>
+              </View>
+              <View style={styles.boxes}>
+                <TouchableHighlight style={styles.touchable}>
+                  <TextInput
+                    style={styles.textInput}
+                    value={form.password}
+                    onChangeText={updatePassword}
+                  ></TextInput>
+                </TouchableHighlight>
+              </View>
+              <View style={styles.boxes}>
+                <TouchableHighlight style={styles.touchable}>
+                  <TextInput
+                    style={styles.textInput}
+                    value={form.confirmPassword}
+                    onChangeText={updateConfirmPassword}
+                  ></TextInput>
+                </TouchableHighlight>
+              </View>
             </View>
           </View>
-          <View style={styles.boxes}>
-            <View style={styles.labelHolder}>
-              <Text style={styles.labelsText}>Password:</Text>
-            </View>
-          </View>
-          <View style={styles.boxes}>
-            <View style={styles.labelHolder}>
-              <Text style={styles.labelsText}>Confirm Password:</Text>
-            </View>
-          </View>
-        </View>
-
-        {/* Right side */}
-        <View style={[styles.containers, { backgroundColor: "black" }]}>
-          <View style={styles.boxes}>
-            <TouchableHighlight style={styles.touchable}>
-              <TextInput
-                style={styles.textInput}
-                value={form.username}
-                onChangeText={updateUsername}
-              ></TextInput>
-            </TouchableHighlight>
-          </View>
-          <View style={styles.boxes}>
-            <TouchableHighlight style={styles.touchable}>
-              <TextInput
-                style={styles.textInput}
-                value={form.password}
-                onChangeText={updatePassword}
-              ></TextInput>
-            </TouchableHighlight>
-          </View>
-          <View style={styles.boxes}>
-            <TouchableHighlight style={styles.touchable}>
-              <TextInput
-                style={styles.textInput}
-                value={form.confirmPassword}
-                onChangeText={updateConfirmPassword}
-              ></TextInput>
-            </TouchableHighlight>
-          </View>
-        </View>
-      </View>
-    </ImageBackground>
+        </ImageBackground>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 }
 
