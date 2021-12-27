@@ -1,58 +1,105 @@
+import { StatusBar } from "expo-status-bar";
 import React from "react";
 import {
   ImageBackground,
-  StatusBar,
   StyleSheet,
   Text,
   View,
   Image,
+  TextInput,
+  TouchableHighlight,
 } from "react-native";
-import { withSafeAreaInsets } from "react-native-safe-area-context";
-
-import backgroundImage from "../config/backgroundImage";
 
 function SignUpScreen(props) {
+  const [form, onChangeForm] = React.useState({
+    username: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const updateUsername = (newUsername) => {
+    onChangeForm((previousState) => {
+      return { ...previousState, username: newUsername };
+    });
+  };
+
+  const updatePassword = (newPassword) => {
+    onChangeForm((previousState) => {
+      return { ...previousState, password: newPassword };
+    });
+  };
+
+  const updateConfirmPassword = (newConfirmPassword) => {
+    onChangeForm((previousState) => {
+      return { ...previousState, confirmPassword: newConfirmPassword };
+    });
+  };
+
   return (
     <ImageBackground
       style={styles.background}
       source={require("../assets/background.jpg")}
     >
+      <StatusBar style={"auto"} />
+
+      {/* Logo and text */}
       <View style={styles.logoContainer}>
         <Image style={styles.logo} source={require("../assets/logo-red.png")} />
         <Text style={styles.logoText}>Sell What You Don't Need</Text>
       </View>
+
+      {/* Form */}
       <View style={styles.placeholder}>
-        <View style={[styles.containers, { backgroundColor: "grey" }]}>
-          <View style={[styles.boxes, { backgroundColor: "dodgerblue" }]}>
+        {/* Left side */}
+        <View style={styles.containers}>
+          <View style={styles.boxes}>
             <View style={styles.labelHolder}>
               <Text style={styles.labelsText}>Username:</Text>
             </View>
           </View>
-          <View style={[styles.boxes, { backgroundColor: "tomato" }]}>
+          <View style={styles.boxes}>
             <View style={styles.labelHolder}>
               <Text style={styles.labelsText}>Password:</Text>
             </View>
           </View>
-          <View style={[styles.boxes, { backgroundColor: "gold" }]}>
+          <View style={styles.boxes}>
             <View style={styles.labelHolder}>
               <Text style={styles.labelsText}>Confirm Password:</Text>
             </View>
           </View>
         </View>
 
-        <View style={[{ backgroundColor: "black" }, styles.containers]}>
-          <View style={[{ backgroundColor: "dodgerblue" }, styles.boxes]}>
-            <View style={[{ backgroundColor: "white" }, styles.textbox]} />
+        {/* Right side */}
+        <View style={[styles.containers, { backgroundColor: "black" }]}>
+          <View style={styles.boxes}>
+            <TouchableHighlight style={styles.touchable}>
+              <TextInput
+                style={styles.textInput}
+                value={form.username}
+                onChangeText={updateUsername}
+              ></TextInput>
+            </TouchableHighlight>
           </View>
-          <View style={[{ backgroundColor: "tomato" }, styles.boxes]}>
-            <View style={[{ backgroundColor: "white" }, styles.textbox]} />
+          <View style={styles.boxes}>
+            <TouchableHighlight style={styles.touchable}>
+              <TextInput
+                style={styles.textInput}
+                value={form.password}
+                onChangeText={updatePassword}
+              ></TextInput>
+            </TouchableHighlight>
           </View>
-          <View style={[{ backgroundColor: "gold" }, styles.boxes]}>
-            <View style={[{ backgroundColor: "white" }, styles.textbox]} />
+          <View style={styles.boxes}>
+            <TouchableHighlight style={styles.touchable}>
+              <TextInput
+                style={styles.textInput}
+                value={form.confirmPassword}
+                onChangeText={updateConfirmPassword}
+              ></TextInput>
+            </TouchableHighlight>
           </View>
         </View>
       </View>
-      <StatusBar style={"auto"} />
     </ImageBackground>
   );
 }
@@ -69,6 +116,7 @@ const styles = StyleSheet.create({
     height: 40,
     justifyContent: "center",
     alignItems: "center",
+    flex: 1,
   },
   containers: {
     width: 150,
@@ -94,12 +142,29 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   placeholder: {
+    borderWidth: 5,
     flexDirection: "row",
-    top: 50,
+    top: 60,
   },
   textbox: {
+    backgroundColor: "white",
     width: "90%",
     height: "70%",
+    justifyContent: "center",
+    alignItems: "flex-start",
+  },
+  textInput: {
+    backgroundColor: "white",
+    width: "90%",
+    height: "70%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  touchable: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    height: "100%",
   },
 });
 

@@ -17,6 +17,7 @@ function WelcomeScreen({ navigation }) {
       style={styles.background}
       source={require("../assets/background.jpg")}
     >
+      <StatusBar style={"auto"} />
       <View style={styles.logoContainer}>
         <Image style={styles.logo} source={require("../assets/logo-red.png")} />
         <Text style={styles.logoText}>Sell What You Don't Need</Text>
