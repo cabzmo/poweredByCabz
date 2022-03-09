@@ -1,5 +1,12 @@
 import React from "react";
-import { StyleSheet, SafeAreaView, View, Image } from "react-native";
+import {
+  StyleSheet,
+  SafeAreaView,
+  View,
+  Image,
+  Button,
+  ImageBackground,
+} from "react-native";
 
 import colors from "../config/colors";
 
@@ -8,11 +15,26 @@ function ViewImageScreen({ navigation }) {
     <SafeAreaView style={styles.containter}>
       {/* <View style={styles.closeIcon}></View>
       <View style={styles.deleteIcon}></View> */}
-      <Image
-        resizeMode="contain"
-        style={styles.image}
-        source={require("../assets/chair.jpg")}
-      />
+      <View
+        style={{
+          width: "100%",
+          height: "100%",
+        }}
+      >
+        <ImageBackground
+          resizeMode="contain"
+          style={styles.image}
+          source={require("../assets/chair.jpg")}
+        />
+        <View style={styles.registerButton}>
+          <Button
+            title="Sign Up"
+            onPress={() => {
+              navigation.navigate("Sign Up");
+            }}
+          />
+        </View>
+      </View>
     </SafeAreaView>
   );
 }
@@ -39,8 +61,14 @@ const styles = StyleSheet.create({
     right: 30,
   },
   image: {
+    width: "80%",
+    height: "80%",
+  },
+  registerButton: {
     width: "100%",
-    height: "100%",
+    height: 70,
+    backgroundColor: "#4ecdc4",
+    justifyContent: "center",
   },
 });
 

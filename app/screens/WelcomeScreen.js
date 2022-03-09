@@ -29,7 +29,13 @@ function WelcomeScreen({ navigation }) {
           onPress={() => navigation.navigate("Chair")}
         />
       </View>
-      <View style={styles.registerButton}></View>
+      <View style={styles.registerButton}>
+        <Button
+          color={"black"}
+          title="Sign Up"
+          onPress={() => navigation.navigate("Sign Up")}
+        />
+      </View>
     </ImageBackground>
   );
 }
@@ -55,6 +61,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 70,
     backgroundColor: "#4ecdc4",
+    justifyContent: "center",
   },
 });
 

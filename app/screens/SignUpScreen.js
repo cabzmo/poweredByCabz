@@ -13,7 +13,7 @@ import {
   KeyboardAvoidingView,
 } from "react-native";
 
-function SignUpScreen(props) {
+function SignUpScreen({ navigation }) {
   const [form, onChangeForm] = React.useState({
     username: "",
     password: "",
